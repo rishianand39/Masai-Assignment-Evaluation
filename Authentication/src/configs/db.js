@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
 const connect = () => {
-    return mongoose.connect(
-        'mongodb+srv://rishianand:1234@cluster0.nweui.mongodb.net/Authentication?retryWrites=true&w=majority'
-    );
+    return mongoose.connect(process.env.DBCONNECT);
 };
 
 module.exports = connect;
