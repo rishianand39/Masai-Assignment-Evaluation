@@ -4,7 +4,7 @@ const router=express.Router();
 const Post=require('../models//post.model');
 const authenticate=require("../middlewares/authenticate")
 
-
+const authorise=require("../middlewares/authorise")
 
 router.get("",async(req,res)=>{
     try {
@@ -18,9 +18,9 @@ router.get("",async(req,res)=>{
 
 
 
-router.post("",authenticate,async(req,res)=>{
+router.post("",authenticate,authorise(["seller","admin"]),async(req,res)=>{
 
-        req.body.user_id=req.userID
+    req.body.user_id=req.user._id
     try {
         const post=await Post.create(req.body)
 

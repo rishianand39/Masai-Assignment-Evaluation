@@ -34,7 +34,7 @@ const authenticate=async(req,res,next)=>{
     }catch(err){
         return res.status(400).send({message:"Auhorization token is not found or incorrect3"})
     }
-req.userID=decoded.user._id
+req.user=decoded.user
    return next()
 }
 
